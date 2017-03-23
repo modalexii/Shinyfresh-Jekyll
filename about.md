@@ -5,7 +5,7 @@ permalink: /about/
 published: true
 ---
 
-THE WEEKENDS OF MY YOUTH
+THE WEEKENDS OF MY YOUTH<br>
 Or How I Learned to Stop Worrying and Love Losing My Hearing
 
 Music Shows I Attended in 2013<sup>1</sup>
@@ -61,3 +61,5 @@ Music Shows I Attended in 2013<sup>1</sup>
 * 12/7 Verdi's Requiem, the JHU Symphony Orchestra (@ Shriver Hall)
 * 12/21 Kennedy Jones (@ Soundstage) + Heroes X Villains, 2Rip
 * 12/28 Charles Feelgood (@ Paradox) + Joe Nice, Bassdread
+
+-----
