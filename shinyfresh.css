@@ -1,0 +1,101 @@
+@import url('//fonts.googleapis.com/css?family=Open+Sans');
+
+html, body {
+	font-family: 'Open Sans', sans-serif;
+	color: #006699;
+	height: 100%;
+}
+
+div#main {
+	/* supporting sticky footer */
+	min-height: 100%;
+	margin-bottom: -50px; /* change 1/2 */
+}
+
+div#main:after {
+	/* supporting sticky footer */
+	content: "";
+	display: block;
+}
+
+footer, div#main:after {
+	/* supporting sticky footer */
+	line-height: 50px; /* change 2/2 */
+}
+
+a {
+	text-decoration: none;
+}
+
+.centering {
+	text-align: center;
+}
+
+div.scalable.wrap {
+	/* home page image - scales down with browser width */
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+img.splash {
+	/* home page scalable image */
+	max-height: 100%;
+	margin-bottom: -2%;
+}
+
+img.headersplash {
+	/* splash above side bar - scale with page height */
+	margin-left: 2%;
+	width: 28%;
+	max-width: 400px;
+}
+
+.linklist {
+	/* home page list of links */
+	display: inline-block;
+}
+
+.linklist a {
+	/* home page list of links */
+	color: inherit;
+}
+
+.linklist a:visited {
+	/* home page list of links */
+	color: inherit;
+}
+
+.linklist a:hover {
+	/* home page list of links */
+    font-weight: bold;
+}
+
+div#navigation {
+	/* side bar */
+	position: sticky;
+	top: 0;
+	width: 20%;
+	max-width: 350px;
+}
+
+div#navigation div#showmenu:target {
+	/* supports toggle of mobile menu */
+	display: none;
+}
+
+.nav-active-l1 {
+	/* first level active navigation */
+	/*color: #fff;
+	background-color: #006699;*/ 
+}
+
+.nav-l2 {
+	/* second level navigation */
+	margin-left: 5%;
+	display: none !important; /* unhidden by child selector of active category */
+}
+
+.nav-active-l1 ~ .nav-l2 {
+	/* unhide child links of the active category */
+	display: inherit !important;
+}

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.name }} – {{ site.description }}</title>
+    <title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.name }}</title>
 
     {% include meta.html %}
 
@@ -9,10 +9,10 @@
       <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/style.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/shinyfresh.css" />
+    {% if page.title == "portfolio" %}<link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/gallery.css" />{% endif %}
     <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}" href="{{ site.baseurl }}/feed.xml" />
-
-    <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
   </head>
 
   <body>
@@ -20,14 +20,16 @@
       {{ content }}
     </div>
 
-    <div class="wrapper-footer">
-      <div class="container">
-        <footer class="footer">
-          {% include svg-icons.html %}
-        </footer>
+    {% if page.footer %}
+    <footer class="centering">
+      <div class="linklist">
+        &copy; Erin Barry-Dutro 2017 | 
+        <a href="https://instagram.com/redhedebd">instagram</a> &bull; <a href="https://shinyfresh.tumblr.com/">tumblr</a>
       </div>
-    </div>
+    </footer>
+  {% endif %}
 
-    {% include analytics.html %}
+  <script src="{{ site.baseurl }}/js/shinyfresh.js"></script>
+  {% include analytics.html %}
   </body>
 </html>

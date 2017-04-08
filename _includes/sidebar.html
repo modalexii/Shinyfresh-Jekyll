@@ -1,0 +1,31 @@
+	<!-- include sidebar.html -->
+	{% assign class-base = 'w3-bar-item w3-button w3-hover-none' %}
+	<a class="w3-button w3-hide-large w3-hide-medium" id="mobilemenu" href="#">&#9776;</a>
+	<div class="w3-container w3-col w3-bar-block w3-mobile" id="navigation"> 
+		<a class="{{ class-base }} w3-hide-large w3-hide-medium" href="{{ site.baseurl }}/">home</a>
+		<a class="{{ class-base }}{% if page.category contains 'portfolio' %} nav-active-l1{% endif %}" href="{{ site.baseurl }}/portfolio">portfolio</a>
+		<a class="{{ class-base }}{% if page.category contains 'shinyfreshpress' %} nav-active-l1{% endif %}" href="{{ site.baseurl }}/shinyfreshpress">shinyfresh press</a>
+		<div class="nav-cat-container">
+		<a class="{{ class-base }}{% if page.category contains 'exlibris' %} nav-active-l1{% endif %}" href="{{ site.baseurl }}/exlibris">ex libris</a>
+			{% for post in site.posts %}      
+				{% if post.categories contains 'exlibris' and post.tags contains 'yearly' %}
+					<a class="{{ class-base }} nav-l2" href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
+			 	{% endif %}
+			{% endfor %}
+			{% for post in site.posts %}      
+				{% if post.categories contains 'exlibris' %}
+					{% unless post.tags contains 'yearly' %}
+						<a class="{{ class-base }} nav-l2" href="{{ site.baseurl }}{{ post.url }}">{{ post.title | truncatewords: 5 }}</a>
+					{% endunless %}
+			  	{% endif %}
+			{% endfor %}
+		</div>
+		<div class="nav-cat-container">
+		<a class="{{ class-base }}{% if page.category contains 'shows' %} nav-active-l1{% endif %}" href="{{ site.baseurl }}/shows">shows</a>
+			{% for post in site.posts %}      
+				{% if post.categories contains 'shows' %}
+					<a class="{{ class-base }} nav-l2" href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
+			 	{% endif %}
+			{% endfor %}
+		</div>
+	</div>

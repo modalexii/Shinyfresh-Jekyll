@@ -1,0 +1,21 @@
+---
+layout: post.exlibris
+category: exlibris
+---
+
+<h3>By Year</h3>
+{% for post in site.posts %}      
+	{% if post.categories contains 'exlibris' and post.tags contains 'yearly' %}
+		<a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a> 
+ 	{% endif %}
+{% endfor %}
+
+<h3>Other posts</h3>
+{% for post in site.posts %}      
+	{% if post.categories contains 'exlibris' %}
+		{% unless post.tags contains 'yearly' %}
+			<h4><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h4>
+			{{ post.content | truncatewords: 20 | markdownify }}
+		{% endunless %}
+  	{% endif %}
+{% endfor %}

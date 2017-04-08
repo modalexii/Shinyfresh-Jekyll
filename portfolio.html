@@ -1,0 +1,62 @@
+---
+layout: post.portfolio
+title: portfolio
+permalink: /portfolio/index.html
+
+---
+
+<!-- _portfilio index.html -->
+<div class="w3-display-container portfolio-wrap">
+
+	<div class="w3-display-container carousel">
+		{% for drawer in site.portfolio %}
+			{% for piece in drawer.piece %}
+				<img class="w3-display-middle slide" src="{{ piece.uri }}">
+			{% endfor %}
+		{% endfor %}
+		<button class="w3-button w3-hover-none w3-display-left carousel-nav" onclick="plusDivs(-1)">&#10094;</button>
+		<button class="w3-button w3-hover-none w3-display-right carousel-nav" onclick="plusDivs(1)">&#10095;</button>
+	</div>
+
+	<div class="w3-row-padding w3-section">
+	{% for drawer in site.portfolio %}
+	{% for piece in drawer.piece %}
+		{% assign loopindex = forloop.index | modulo: 12 %}
+		{% if loopindex == 1 %} {% comment %} open row on each first of 12 {% endcomment %}
+		<div class="w3-row">
+		{% endif %}
+		<div class="w3-col l1 m2 s4">
+			<img class="w3-opacity w3-hover-opacity-off thumb" src="{{ piece.uri }}" onclick="currentDiv({{ forloop.index }})">
+			<p class="meta title">{{ piece.title }}</p>
+            <p class="meta caption">{{ piece.description }}</p>
+            <p class="meta date">{{ piece.date-season }} {{ piece.date-year }}</p>
+            <p class="meta media">{{ piece.media }}</p>
+            <p class="meta raw">{{ piece.uri }}</p>
+		</div>
+		{% if loopindex == 0 %} {% comment %} close row on each last of 12 {% endcomment %}
+		</div>
+		{% endif %}
+	{% endfor %}
+	{% endfor %}
+	</div>
+
+</div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/hammerjs/2.0.8/hammer.min.js"></script>
+<script src="{{ site.baseurl }}/js/gallery.js"></script>
+
+<!--
+	<div class="box" data-index="{{ forloop.index }}">
+		<div class="boxInner selected">
+			<a href="#"> 
+				<img src="{{ piece.uri }}" /> 
+				<div class="meta title">{{ piece.title }}</div>
+				<div class="meta caption">{{ piece.description }}</div>
+				<div class="meta date">{{ piece.date-season }} {{ piece.date-year }}</div>
+				<div class="meta media">{{ piece.media }}</div>
+				<div class="meta raw">{{ piece.uri }}</div>
+			</a>
+		</div>
+	</div>
+	-->

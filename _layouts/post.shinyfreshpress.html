@@ -1,0 +1,21 @@
+---
+layout: base
+---
+
+<!-- layout post.shinyfreshpress.html-->
+{% include header.html %}
+<div class="w3-row"> <!-- nav/sidebar -->
+	{% include sidebar.html %}
+	<div class="w3-container w3-rest w3-mobile"> <!-- post  -->
+		<h2>shinyfresh press!</h2> 
+		Some kind of byline maybe?
+		<div class="post">
+			<h3 class="title">{{ page.title }}</h3>
+			<div class="entry">
+				{{ content }}
+			</div>
+		</div>
+	</div>
+</div>
+
+
