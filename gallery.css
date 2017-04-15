@@ -1,23 +1,50 @@
 
-
-.meta:not(.carousel) {
-  display: none;
-}
-
 .carousel {
-  height: 75vh; /* change 1/3 */
-  line-height: 75vh; /* change 2/3 */
+  height: 65vh; /* change 1/3 */
+  line-height: 65vh; /* change 2/3 */
   overflow: hidden;
   margin-bottom: 5%;
 }
 
-img.thumb {
-  width: 100%;
-  padding: 2%
+.square {
+  /* thumbnail outer container, for creating square thumbs */
+  position: relative;
+  overflow: hidden;
 }
 
-img.slide {
-  max-height: 75vh; /* change 3/3 */
+.square:before {
+  /* for creating square thumbs */
+  content: "";
+  display: block;
+  padding-top: 100%;
+}
+
+.square-inner {
+  /* thumbnail inner container, for creating square thumbs */
+  position:  absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+img.thumb {
+  /* thumbnail image, always square as seen in it's container */
+  padding: 2%;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
+  /* element acten upon by caorusel script */
+  max-height: 65vh; /* change 3/3 */
+}
+
+.slide-meta {
+  /* title and description, etc */
+  margin-top: 2vh;
+  margin-bottom: 2vh;
 }
 
 button.carousel-nav {

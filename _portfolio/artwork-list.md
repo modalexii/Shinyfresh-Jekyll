@@ -15,12 +15,12 @@ piece:
     media: "monotype, pen"
     uri: "http://placehold.it/1200x400?text=7"
 
-  - title: "Image title B"
+  - title: "Image title B "
     description: "desc B"
     date-season: "winter"
     date-year: "2017"
     media: "3d printed, LEDs"
-    uri: "http://placehold.it/300?text=B"
+    uri: "http://placehold.it/300?text=B-Serieshead"
     series:
       - uri: "http://placehold.it/300?text=B2"
       - uri: "http://placehold.it/300?text=B3"
@@ -59,11 +59,10 @@ piece:
     date-season: "summer"
     date-year: "2013"
     media: "3d printed, LEDs"
-    uri: "http://placehold.it/300?text=FF"
+    uri: "http://placehold.it/300?text=FF-serieshead"
     series:
       - uri: "http://placehold.it/300?text=FF2"
       - uri: "http://placehold.it/300?text=FF3"
-      - uri: "http://placehold.it/300?text=FF4"
 
   - title: "Image title QQ"
     description: "desc QQ"
@@ -98,11 +97,11 @@ piece:
     date-season: "summer"
     date-year: "2013"
     media: "3d printed, LEDs"
-    uri: "http://placehold.it/300?text=p0p0"
+    uri: "http://placehold.it/300?text=p0p0-serieshead"
     series:
-      - uri: "http://placehold.it/300?text=FF2"
-      - uri: "http://placehold.it/300?text=FF3"
-      - uri: "http://placehold.it/300?text=FF4"
+      - uri: "http://placehold.it/300?text=p0p02"
+      - uri: "http://placehold.it/300?text=p0p03"
+      - uri: "http://placehold.it/300?text=p0p04"
 
   - title: "Image title 2222"
     description: "desc 2222"

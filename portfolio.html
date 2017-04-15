@@ -12,28 +12,102 @@ permalink: /portfolio/index.html
 		{% for drawer in site.portfolio %}
 			{% for piece in drawer.piece %}
 				<img class="w3-display-middle slide" src="{{ piece.uri }}">
+				{% for s in piece.series %}
+					<img class="w3-display-middle slide" src="{{ s.uri }}">
+				{% endfor %}
 			{% endfor %}
 		{% endfor %}
 		<button class="w3-button w3-hover-none w3-display-left carousel-nav" onclick="plusDivs(-1)">&#10094;</button>
 		<button class="w3-button w3-hover-none w3-display-right carousel-nav" onclick="plusDivs(1)">&#10095;</button>
 	</div>
 
-	<div class="w3-row-padding w3-section">
+	<div class="w3-row">
+	{% assign seriesoffset = 0 %} {% comment %} roll a master offset {% endcomment %}
+	{% for drawer in site.portfolio %} {% comment %} write out series thumbs {% endcomment %}
+		{% for piece in drawer.piece %}
+			{% assign pieceloopindex = forloop.index %}
+			{% if piece.series.size > 0 %} 
+				{% comment %} write thumbs for for the series head {% endcomment %}
+				<div class="series-thumb">
+					<div class="w3-col l1 m2 s4 square">
+						<div class="square-inner">
+							<img class="w3-opacity w3-hover-opacity-off thumb" src="{{ piece.uri }}" onclick="currentDiv({{ pieceloopindex }})">
+						</div>
+					</div>
+				{% for s in piece.series %}
+					<div class="w3-col l1 m2 s4 square">
+						<div class="square-inner">
+							<img class="w3-opacity w3-hover-opacity-off thumb" src="{{ s.uri }}" onclick="currentDiv({{ pieceloopindex | plus:forloop.index | plus:seriesoffset }})">
+						</div>
+					</div>
+				{% endfor %}
+				</div>
+				{% comment %} write thumbs for each in series {% endcomment %}
+				{% for s in piece.series %} {% comment %} duplicate meta, updating only href, for pics in series {% endcomment %}
+					<div class="series-thumb">
+						<div class="w3-col l1 m2 s4 square">
+							<div class="square-inner">
+								<img class="w3-opacity w3-hover-opacity-off thumb" src="{{ piece.uri }}" onclick="currentDiv({{ pieceloopindex }})">
+							</div>
+						</div>
+					{% for s in piece.series %}
+						<div class="w3-col l1 m2 s4 square">
+							<div class="square-inner">
+								<img class="w3-opacity w3-hover-opacity-off thumb" src="{{ s.uri }}" onclick="currentDiv({{ pieceloopindex | plus:forloop.index | plus:seriesoffset }})">
+							</div>
+						</div>
+					{% endfor %}
+					</div>
+				{% endfor %}
+				{% assign seriesoffset = seriesoffset | plus:piece.series.size %} 
+			{% else %} {% comment %} No series for this pic - write a dummy element to keep the count straight {% endcomment %}
+				<div class="series-thumb"></div>
+			{% endif %}
+		{% endfor %}
+	{% endfor %}
+	</div>
+
+	<div class="w3-row">
+	{% for drawer in site.portfolio %} {% comment %} write out image meta blocks {% endcomment %}
+		{% for piece in drawer.piece %}
+			<div class="slide-meta">
+				<span class="meta title">{{ piece.title }}</span> &bull;
+				<span class="meta caption">{{ piece.description }}</span> &bull;
+				<span class="meta date">{{ piece.date-season }} {{ piece.date-year }}</span> &bull;
+				<span class="meta media">{{ piece.media }}</span> 
+				<a href="{{ piece.uri }}" target="_blank" class="meta raw">&#9713;</a>
+			</div>
+			{% for s in piece.series %} {% comment %} duplicate meta, updating only href, for pics in series {% endcomment %}
+				<div class="slide-meta">
+					<span class="meta title">{{ piece.title }}</span> &bull;
+					<span class="meta caption">{{ piece.description }}</span> &bull;
+					<span class="meta date">{{ piece.date-season }} {{ piece.date-year }}</span> &bull;
+					<span class="meta media">{{ piece.media }}</span> 
+					<a href="{{ s.uri }}" target="_blank" class="meta raw">&#9713;</a>
+				</div>
+			{% endfor %}
+		{% endfor %}
+	{% endfor %}
+	</div>
+
+	<div class="w3-row">
+	{% assign seriesoffset = 0 %} {% comment %} roll a master offset {% endcomment %}
 	{% for drawer in site.portfolio %}
 	{% for piece in drawer.piece %}
-		{% assign loopindex = forloop.index | modulo: 12 %}
-		{% if loopindex == 1 %} {% comment %} open row on each first of 12 {% endcomment %}
+		{% assign pieceloopindex = forloop.index %}
+		{% assign loopindex12s = forloop.index | modulo: 12 %}
+		{% if loopindex12s == 1 %} {% comment %} open row on each first of 12 {% endcomment %}
 		<div class="w3-row">
 		{% endif %}
-		<div class="w3-col l1 m2 s4">
-			<img class="w3-opacity w3-hover-opacity-off thumb" src="{{ piece.uri }}" onclick="currentDiv({{ forloop.index }})">
-			<p class="meta title">{{ piece.title }}</p>
-            <p class="meta caption">{{ piece.description }}</p>
-            <p class="meta date">{{ piece.date-season }} {{ piece.date-year }}</p>
-            <p class="meta media">{{ piece.media }}</p>
-            <p class="meta raw">{{ piece.uri }}</p>
+		<div class="w3-col l1 m2 s4 square">
+			<div class="square-inner">
+				<img class="w3-opacity w3-hover-opacity-off thumb" src="{{ piece.uri }}" onclick="currentDiv({{ pieceloopindex | plus:seriesoffset }})">
+			</div>
 		</div>
-		{% if loopindex == 0 %} {% comment %} close row on each last of 12 {% endcomment %}
+		{% if piece.series.size > 0 %} {% comment %} add the offset to the *next* index {% endcomment %}
+			{% assign seriesoffset = seriesoffset | plus:piece.series.size %} 
+		{% endif %}
+		{% if loopindex12s == 0 %} {% comment %} close row on each last of 12 {% endcomment %}
 		</div>
 		{% endif %}
 	{% endfor %}
@@ -45,18 +119,3 @@ permalink: /portfolio/index.html
 <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/hammerjs/2.0.8/hammer.min.js"></script>
 <script src="{{ site.baseurl }}/js/gallery.js"></script>
-
-<!--
-	<div class="box" data-index="{{ forloop.index }}">
-		<div class="boxInner selected">
-			<a href="#"> 
-				<img src="{{ piece.uri }}" /> 
-				<div class="meta title">{{ piece.title }}</div>
-				<div class="meta caption">{{ piece.description }}</div>
-				<div class="meta date">{{ piece.date-season }} {{ piece.date-year }}</div>
-				<div class="meta media">{{ piece.media }}</div>
-				<div class="meta raw">{{ piece.uri }}</div>
-			</a>
-		</div>
-	</div>
-	-->

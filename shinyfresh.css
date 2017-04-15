@@ -23,6 +23,10 @@ footer, div#main:after {
 	line-height: 50px; /* change 2/2 */
 }
 
+header {
+	height: 20vh;
+}
+
 a {
 	text-decoration: none;
 }
