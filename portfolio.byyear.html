@@ -1,0 +1,12 @@
+---
+layout: post.portfolio
+title: portfolio
+permalink: /portfolio/byyear.html
+---
+
+{% assign grouped = site.portfolio[0].piece | group_by: 'date-year' %}
+{% for group in grouped %}
+<div id="{{ group.name }}" class="filter-group">
+	{% include portfolio.html collection=group.items %}
+</div>
+{% endfor %}

@@ -51,6 +51,7 @@ button.carousel-nav {
   color: rgba(7, 115, 150, 0.50);
 }
 
-.portfolio-wrap {
-  margin-right: 5%;
+.filter-group {
+  /* a group of images, e.g. one year when viewing by year, shown by script */
+  display: none;
 }

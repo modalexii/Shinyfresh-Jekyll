@@ -10,6 +10,7 @@ div#main {
 	/* supporting sticky footer */
 	min-height: 100%;
 	margin-bottom: -50px; /* change 1/2 */
+	padding-bottom: 50px /* space between end of content and footer */
 }
 
 div#main:after {
@@ -44,6 +45,7 @@ div.scalable.wrap {
 img.splash {
 	/* home page scalable image */
 	max-height: 100%;
+	max-width: 100%;
 	margin-bottom: -2%;
 }
 
@@ -85,6 +87,11 @@ div#navigation {
 div#navigation div#showmenu:target {
 	/* supports toggle of mobile menu */
 	display: none;
+}
+
+a#mobilemenu {
+	/* menu icon */
+	float: right;
 }
 
 .nav-active-l1 {
